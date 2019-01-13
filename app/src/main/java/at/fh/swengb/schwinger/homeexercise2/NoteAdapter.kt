@@ -34,12 +34,8 @@ class NoteAdapter(): RecyclerView.Adapter<NoteViewHolder>() {
 
 class NoteViewHolder(myView: View): RecyclerView.ViewHolder(myView) {
     fun bindItem(note: Note) {
-        //itemView.student_name.text = student.name
-        //itemView.note_title2.text = note.title
         itemView.note_title2.text = note.title
         itemView.note_content2.text = note.content
-        //itemView.student_name2.text = student.currentSemester.toString()
-
     }
 }
 

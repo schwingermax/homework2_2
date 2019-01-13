@@ -12,7 +12,6 @@ interface NoteDao{
 
 
     @Query("SELECT * FROM Note")
-    //@Query("SELECT * FROM Note ORDER BY content")
     fun findAll(): List<Note>
 
 

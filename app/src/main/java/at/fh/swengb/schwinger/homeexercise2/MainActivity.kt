@@ -17,19 +17,31 @@ class MainActivity : AppCompatActivity() {
 
 
     fun store(view: View) {
-        val sharedPreferences = getSharedPreferences(packageName, Context.MODE_PRIVATE)
-        sharedPreferences.edit().putString("name", name_user.text.toString()).apply()
-        Log.i("Test", "stored name")
-        sharedPreferences.edit().putInt("alter", age_user.text.toString().toInt()).apply()
-        Log.i("Test", "stored age succesfully")
-        nextPage()
+        if (name_user.text.isEmpty() || /*and*/  age_user.text.isEmpty()) {
+            name_user.hint = "Insert NAME"
+            age_user.hint = "Insert AGE"
+            insert_text.text = "Please insert NAME and AGE"
+            /* Folgende Idee hat leider nicht funtkioniert
+            if (name_user.text.isEmpty() and age_user.text.isNotEmpty()){
+             Log.i("EmptyAct", "Insert TExt")
+             insert_text.text = "PLEASE INSERT NAME"}
+             if (age_user.text.isEmpty() and name_user.text.isNotEmpty()){
+                 Log.i("EmptyAct", "Insert TExt")
+                 insert_text.text = "PLEASE INSERT AGE"}*/
+        } else {
+            val sharedPreferences = getSharedPreferences(packageName, Context.MODE_PRIVATE)
+            sharedPreferences.edit().putString("name", name_user.text.toString()).apply()
+            Log.i("Test", "stored name")
+            sharedPreferences.edit().putInt("alter", age_user.text.toString().toInt()).apply()
+            Log.i("Test", "stored age succesfully")
+            nextPage()
+        }
     }
 
 
 
-     private fun nextPage() {
+    private fun nextPage() {
          val intent = Intent(this, NoteListActivity::class.java)
-         //val intent = Intent(this, AddNoteActivity::class.java)
          startActivity(intent)
          finish()
      }
